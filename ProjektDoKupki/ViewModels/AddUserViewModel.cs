@@ -1,13 +1,9 @@
-﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
+﻿using Android.Util;
+using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using ProjektDoKupki.Models;
 using ProjektDoKupki.Services;
 using ProjektDoKupki.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProjektDoKupki.ViewModels
 {
@@ -16,6 +12,9 @@ namespace ProjektDoKupki.ViewModels
     {
         [ObservableProperty]
         private User _UserDetail = new User();
+        private AddUser addUser = new AddUser();
+
+
 
         private readonly IUserService _studentService;
 
@@ -28,14 +27,19 @@ namespace ProjektDoKupki.ViewModels
         public async void AddUser()
         {
 
-                await _studentService.AddStudent(new Models.User
+            //Trace.WriteLine("First NAme:", UserDetail.FirstName.ToString());
+            await Shell.Current.DisplayAlert("Record Added", "Record  to Student Table","OK");
+
+
+            await _studentService.AddStudent(new Models.User
                 {
+                    
                     FirstName = UserDetail.FirstName,
                     LastName = UserDetail.LastName,
-                    Email = UserDetail.Email
+                    Email = addUser.getEmail(),
                 });
-
                 await Shell.Current.DisplayAlert("Record Added", "Record  to Student Table", "OK");
+
 
         }
     }

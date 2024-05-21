@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProjektDoKupki.Views.AddUser"
+             xmlns:ModelsViews="clr-namespace:ProjektDoKupki.ViewModels"
              Title="AddNewUser">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -16,22 +17,22 @@
 
         <VerticalStackLayout>
             <Label Text="First Name"/>
-            <Entry Text="{Binding StudentDetail.FirstName}" Placeholder="First Name"/>
+            <Entry Text="{Binding StudentDetail.FirstName}" x:Name="FirstNameEntry" Placeholder="First Name"/>
             <BoxView HeightRequest="0.8" Color='Gray'/>
         </VerticalStackLayout>
 
         <VerticalStackLayout>
             <Label  Text="Last Name"/>
-            <Entry Text="{Binding StudentDetail.LastName}" Placeholder="Last Name"/>
+            <Entry Text="{Binding StudentDetail.LastName}" x:Name="LastNameEntry" Placeholder="Last Name"/>
             <BoxView HeightRequest="0.8" Color='Gray'/>
         </VerticalStackLayout>
 
         <VerticalStackLayout>
             <Label Text="Email"/>
-            <Entry Text="{Binding StudentDetail.Email}" Placeholder="Email"/>
+            <Entry Text="{Binding StudentDetail.Email}" x:Name="EmailEntry" Placeholder="Email"/>
             <BoxView HeightRequest="0.8" Color='Gray'/>
         </VerticalStackLayout>
 
-        <Button Text="Dodaj Użytkownika" Command="{Binding AddUpdateStudentCommand}"/>
+        <Button Text="Dodaj Użytkownika" Command="{Binding AddUserCommand}"/>
     </StackLayout>
 </ContentPage>
