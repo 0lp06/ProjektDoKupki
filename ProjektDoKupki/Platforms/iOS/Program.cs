@@ -1,7 +1,7 @@
 ﻿using ObjCRuntime;
 using UIKit;
 
-namespace ProjektDoKupki
+namespace ProjektMAUI
 {
     public class Program
     {

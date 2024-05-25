@@ -1,45 +1,48 @@
-﻿using Android.Util;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
+﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
-using ProjektDoKupki.Models;
-using ProjektDoKupki.Services;
-using ProjektDoKupki.Views;
+using ProjektMAUI.Models;
+using ProjektMAUI.Services;
+using ProjektMAUI.Views;
 
-namespace ProjektDoKupki.ViewModels
+namespace ProjektMAUI.ViewModels
 {
-    [QueryProperty(nameof(UserDetail), "User Detail:")]
-    public partial class AddUserViewModel : ObservableObject
+    public partial class AddUserViewModel
     {
-        [ObservableProperty]
-        private User _UserDetail = new User();
-        private AddUser addUser = new AddUser();
+        public string name { get; set; } = "";
+        public string surname { get; set; } = "";
+        public string email { get; set; } = "";
 
+        private readonly IUserService _studentService = new UserService();
 
-
-        private readonly IUserService _studentService;
-
-        public AddUserViewModel(IUserService studentService)
-        {
-            this._studentService = studentService;
+        public AddUserViewModel() {
         }
 
-        [ICommand]
         public async void AddUser()
         {
 
-            //Trace.WriteLine("First NAme:", UserDetail.FirstName.ToString());
-            await Shell.Current.DisplayAlert("Record Added", "Record  to Student Table","OK");
+            if (string.IsNullOrEmpty(name))
+            {
+                await Shell.Current.DisplayAlert("Brak danych", "Należy Podać Imie!", "OK");
+                return;
+            }
+            if (string.IsNullOrEmpty(surname))
+            {
+                await Shell.Current.DisplayAlert("Brak danych", "Należy Podać Nazwisko!", "OK");
+                return;
+            }
+            if (string.IsNullOrEmpty(email))
+            {
+                await Shell.Current.DisplayAlert("Brak danych", "Należy Podać Email!", "OK");
+                return;
+            }
 
+            await _studentService.AddUser(new User(name,surname,email));
 
-            await _studentService.AddStudent(new Models.User
-                {
-                    
-                    FirstName = UserDetail.FirstName,
-                    LastName = UserDetail.LastName,
-                    Email = addUser.getEmail(),
-                });
-                await Shell.Current.DisplayAlert("Record Added", "Record  to Student Table", "OK");
+            this.name = "";
+            this.surname = "";
+            this.email = "";
 
+            await AppShell.Current.GoToAsync("..");
 
         }
     }

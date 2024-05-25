@@ -1,6 +1,6 @@
 ﻿using Foundation;
 
-namespace ProjektDoKupki
+namespace ProjektMAUI
 {
     [Register("AppDelegate")]
     public class AppDelegate : MauiUIApplicationDelegate

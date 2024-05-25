@@ -1,7 +1,7 @@
 ﻿using Android.App;
 using Android.Runtime;
 
-namespace ProjektDoKupki
+namespace ProjektMAUI
 {
     [Application]
     public class MainApplication : MauiApplication

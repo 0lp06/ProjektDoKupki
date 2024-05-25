@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewModels="clr-namespace:ProjektDoKupki.ViewModels"
+             xmlns:viewModels="clr-namespace:ProjektMAUI.ViewModels"
              Title="Add / update student detail"
-            x:Class="ProjektDoKupki.Views.AddUpdateStudentDetail">
+            x:Class="ProjektMAUI.Views.UpdateUserDetail">
+    <ContentPage.BindingContext>
+        <viewModels:UpdateUserDetailViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Label">
@@ -17,22 +20,22 @@
 
         <VerticalStackLayout>
             <Label Text="First Name"/>
-            <Entry Text="{Binding StudentDetail.FirstName}" Placeholder="First Name"/>
+            <Entry x:Name="FirstName" Text="{Binding userDetail.FirstName}" Placeholder="First Name"/>
             <BoxView HeightRequest="0.8" Color='Gray'/>
         </VerticalStackLayout>
 
         <VerticalStackLayout>
             <Label  Text="Last Name"/>
-            <Entry Text="{Binding StudentDetail.LastName}" Placeholder="Last Name"/>
+            <Entry x:Name="LastName" Text="{Binding userDetail.LastName}"  Placeholder="Last Name"/>
             <BoxView HeightRequest="0.8" Color='Gray'/>
         </VerticalStackLayout>
 
         <VerticalStackLayout>
             <Label Text="Email"/>
-            <Entry Text="{Binding StudentDetail.Email}" Placeholder="Email"/>
+            <Entry x:Name="Email" Text="{Binding userDetail.Email, Mode=TwoWay}" Placeholder="Email"/>
             <BoxView HeightRequest="0.8" Color='Gray'/>
         </VerticalStackLayout>
 
-        <Button Text="Save" Command="{Binding AddUpdateStudentCommand}"/>
+        <Button Text="Save"  Clicked="Button_Clicked"/>
     </StackLayout>
 </ContentPage>

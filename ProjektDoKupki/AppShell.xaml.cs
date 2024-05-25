@@ -1,6 +1,7 @@
-﻿using ProjektDoKupki.Views;
+﻿using ProjektMAUI.ViewModels;
+using ProjektMAUI.Views;
 
-namespace ProjektDoKupki
+namespace ProjektMAUI
 {
     public partial class AppShell : Shell
     {
@@ -8,7 +9,9 @@ namespace ProjektDoKupki
         {
             InitializeComponent();
             Routing.RegisterRoute(nameof(AddUser),typeof(AddUser));
-           // Routing.RegisterRoute(nameof(AddUpdateStudentDetail),typeof(AddUpdateStudentDetail));
+            Routing.RegisterRoute(nameof(UpdateUserDetail),typeof(UpdateUserDetail));
+            Routing.RegisterRoute(nameof(UpdateUserDetailViewModel),typeof(UpdateUserDetailViewModel));
+
         }
     }
 }

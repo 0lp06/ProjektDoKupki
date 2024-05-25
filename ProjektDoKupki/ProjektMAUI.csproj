@@ -69,11 +69,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\UpdateUserDetail.xaml.cs">
+	    <DependentUpon>UpdateUserDetail.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\AddUser.xaml.cs">
 	    <DependentUpon>AddUser.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\StudentListPage.xaml.cs">
-	    <DependentUpon>StudentListPage.xaml</DependentUpon>
+	  <Compile Update="Views\UserListPage.xaml.cs">
+	    <DependentUpon>UserListPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
@@ -81,10 +84,10 @@
 	  <MauiXaml Update="Views\AddUser.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\AddUpdateStudentDetail.xaml">
+	  <MauiXaml Update="Views\UpdateUserDetail.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\StudentListPage.xaml">
+	  <MauiXaml Update="Views\UserListPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

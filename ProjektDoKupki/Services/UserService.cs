@@ -1,4 +1,4 @@
-﻿using ProjektDoKupki.Models;
+﻿using ProjektMAUI.Models;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjektDoKupki.Services
+namespace ProjektMAUI.Services
 {
     public class UserService : IUserService
     {
@@ -19,6 +19,7 @@ namespace ProjektDoKupki.Services
 
         private async void SetUpOb()
         {
+            // łącznie się z bazą danych
             if (_dbConnection == null)
             {
                 string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Student.db3");
@@ -27,39 +28,38 @@ namespace ProjektDoKupki.Services
             }
         }
 
-        public async Task<int> CheckIsExsist(User student)
+        public async Task<int> CheckIsExsist(User user)
         {
-            var list = await GetStudentService();
+            //sprawdza czy dany element istnieje w tablicy
+            var list = await GetUserService();
             int IsExsists = 0;
 
             list.ForEach(item =>
             {
-                if (item == student) { IsExsists = 1; }
+                if (item == user) { IsExsists = 1; }
 
             });
 
             return IsExsists;
         }
 
-        public Task<int> AddStudent(User student)
+        public Task<int> AddUser(User user)
         {
-          return _dbConnection.InsertAsync(student);
+            //dodaje użytkownika do bazy dancyh
+          return _dbConnection.InsertAsync(user);
         }
 
-        public Task<int> DeleteStudent(User student)
+        public Task<int> DeleteUser(User user)
         {
-            return _dbConnection.DeleteAsync(student);
+            //usuwa użytkownika z bazy danych
+            return _dbConnection.DeleteAsync(user);
         }
 
-        public async Task<List<User>> GetStudentService()
+        public async Task<List<User>> GetUserService()
         {
-            var studentList =await _dbConnection.Table<User>().ToListAsync();
-            return studentList;
-        }
-
-        public Task<int> UpdateStudent(User student)
-        {
-            return _dbConnection.UpdateAsync(student);
+            //pobiera elementy z tablicy
+            var userList =await _dbConnection.Table<User>().ToListAsync();
+            return userList;
         }
     }
 }

@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Logging;
-using ProjektDoKupki.Models;
-using ProjektDoKupki.Services;
-using ProjektDoKupki.ViewModels;
-using ProjektDoKupki.Views;
+using ProjektMAUI.Models;
+using ProjektMAUI.Services;
+using ProjektMAUI.ViewModels;
+using ProjektMAUI.Views;
 
-namespace ProjektDoKupki
+namespace ProjektMAUI
 {
     public static class MauiProgram
     {
@@ -24,11 +24,11 @@ namespace ProjektDoKupki
 
             //View Registration
             builder.Services.AddSingleton<StudentListPage>();
-            builder.Services.AddTransient<AddUpdateStudentDetail>();
+            builder.Services.AddTransient<UpdateUserDetail>();
 
             //View Model
             builder.Services.AddSingleton<UserListPageViewModel>();
-            builder.Services.AddSingleton<AddUpdateStudentDetailViewModel>();
+            builder.Services.AddSingleton<UpdateUserDetailViewModel>();
 
 
 

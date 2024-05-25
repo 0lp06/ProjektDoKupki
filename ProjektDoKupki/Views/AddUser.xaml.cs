@@ -1,25 +1,35 @@
-using ProjektDoKupki.Services;
-using ProjektDoKupki.ViewModels;
+using ProjektMAUI.Models;
+using ProjektMAUI.Services;
+using ProjektMAUI.ViewModels;
 using System.Diagnostics;
 
-namespace ProjektDoKupki.Views;
+namespace ProjektMAUI.Views;
 
 public partial class AddUser : ContentPage
 {
-	private readonly static IUserService UserService = new UserService();
-	AddUserViewModel viewModel =new AddUserViewModel(UserService);
+
+    private readonly AddUserViewModel viewModel;
 
 
     public AddUser()
 	{
         InitializeComponent();
-		this.BindingContext = viewModel;
+        this.viewModel = (AddUserViewModel)BindingContext;
+        FirstNameEntry.Text = viewModel.name;
+        LastNameEntry.Text = viewModel.surname;
+        EmailEntry.Text = viewModel.email;
     }
 
-	/*
-    public AddUser(AddUserViewModel viewModel)
-	{
-		InitializeComponent();
-		this.BindingContext = viewModel;
-	}*/
+    private void Button_Clicked(object sender, EventArgs e)
+    {
+        this.viewModel.AddUser();
+    }
+
+    private void OnDataChange(object sender, TextChangedEventArgs e)
+    {
+
+        viewModel.name = FirstNameEntry.Text;
+        viewModel.surname = LastNameEntry.Text;
+        viewModel.email = EmailEntry.Text;
+    }
 }

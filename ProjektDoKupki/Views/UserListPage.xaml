@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ProjektDoKupki.Views.StudentListPage"
-             xmlns:models="clr-namespace:ProjektDoKupki.Models"
-             xmlns:viewModels="clr-namespace:ProjektDoKupki.ViewModels"
+             x:Class="ProjektMAUI.Views.StudentListPage"
+             xmlns:models="clr-namespace:ProjektMAUI.Models"
+             xmlns:viewModels="clr-namespace:ProjektMAUI.ViewModels"
              x:DataType="viewModels:UserListPageViewModel"
-             Title="Student List">
+             Title="Lista Użytkowników">
     <ContentPage.Resources>
         <Style x:Key="LabelName" TargetType="Label">
             <Setter Property="FontSize" Value="18"/>
@@ -17,7 +17,7 @@
            Text="Lista: użytkowników" FontSize="28"/>
         <Button Text="Dodaj Użytkownika" Command="{Binding AddUserPageCommand}" HorizontalOptions="EndAndExpand"/>
 
-        <CollectionView ItemsSource="{Binding Students}">
+        <CollectionView ItemsSource="{Binding Users}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:User">
                     <Frame Margin="10" Padding="10">

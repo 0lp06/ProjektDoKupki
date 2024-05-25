@@ -1,6 +1,6 @@
-using ProjektDoKupki.ViewModels;
+using ProjektMAUI.ViewModels;
 
-namespace ProjektDoKupki.Views;
+namespace ProjektMAUI.Views;
 
 public partial class StudentListPage : ContentPage
 {
@@ -16,6 +16,6 @@ public partial class StudentListPage : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
-		_viewModel.GetStudentListCommand.Execute(this);
+		_viewModel.GetUserListCommand.Execute(this);
     }
 }

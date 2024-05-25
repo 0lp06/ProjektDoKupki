@@ -1,4 +1,4 @@
-﻿namespace ProjektDoKupki
+﻿namespace ProjektMAUI
 {
     public partial class MainPage : ContentPage
     {

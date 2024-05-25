@@ -1,8 +1,8 @@
 ﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
-using ProjektDoKupki.Models;
-using ProjektDoKupki.Services;
-using ProjektDoKupki.Views;
+using ProjektMAUI.Models;
+using ProjektMAUI.Services;
+using ProjektMAUI.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,30 +10,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjektDoKupki.ViewModels
+namespace ProjektMAUI.ViewModels
 {
     public partial class UserListPageViewModel : ObservableObject
     {
-        public ObservableCollection<User> Students { get; set; } = new ObservableCollection<User>();
+        public ObservableCollection<User> Users { get; set; } = new ObservableCollection<User>();
 
-        private readonly IUserService _studentService;
+        private readonly IUserService _userService;
 
-        public UserListPageViewModel(IUserService studentService) { 
+        public UserListPageViewModel(IUserService userService) { 
             
-            _studentService = studentService;
+            _userService = userService;
         }
 
         [ICommand]
-        private async void GetStudentList()
+        private async void GetUserList()
         {
-            var StudentList = await _studentService.GetStudentService();
-            if (StudentList?.Count >0) {
-                Students.Clear();
+            var UserList = await _userService.GetUserService(); //pobiera elementy z tablicy
+            if (UserList?.Count >0) {
+                Users.Clear();
 
-                foreach (var student in StudentList)
+                foreach (var user in UserList)
                 {
 
-                    Students.Add(student);
+                    Users.Add(user);
                 }
             }
         }
@@ -44,27 +44,19 @@ namespace ProjektDoKupki.ViewModels
         }
 
         [ICommand]
-        public async void DisplayAction(User student)
+        public async void DisplayAction(User user)
         {
 
-            var response =  await AppShell.Current.DisplayActionSheet("Select Option: ", "OK", null, "Edit", "Delete");
+            var response =  await AppShell.Current.DisplayActionSheet("Czy na pewno chcesz usunąć elemnt z tablicy? ", "anuluj", null, "tak", "nie");
+           
 
-            if (response == "Edit")
+            if(response == "tak")
             {
-                var navParam =new Dictionary<string , object>();
-
-                navParam.Add("Student Detail: ", student);
-
-                await AppShell.Current.GoToAsync(nameof(AddUpdateStudentDetail), navParam);
-            }
-
-            else if(response =="Delete")
-            {
-               var delResponse =  await _studentService.DeleteStudent(student);
+               var delResponse =  await _userService.DeleteUser(user);
 
                 if(delResponse>0)
                 {
-                    GetStudentList();
+                    GetUserList();
                 }
             }
         }
